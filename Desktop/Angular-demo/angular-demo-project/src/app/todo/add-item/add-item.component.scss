@@ -1,0 +1,36 @@
+@import '../../../styles.scss';
+
+.div-container{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    @include displayFlex(column);
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+
+    .card{
+        width: 40%;
+        @include displayFlex();
+    
+        .card-body{
+            width: 100%;
+            @include displayFlex();
+    
+            form{
+                width: 100%;
+                @include displayFlex();
+
+                .mat-form-field{
+                    width: 80%;
+                }
+
+                button{
+                    width: 20%;
+                    margin: 0 0 3% 2%;
+                    padding: 1.4%;
+                }
+            }
+        }
+    }
+
+}

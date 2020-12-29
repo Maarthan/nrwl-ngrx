@@ -1,0 +1,23 @@
+<app-navigation></app-navigation>
+
+<div class="div-container">
+
+  <div class="alert alert-success" role="alert" *ngIf="message">
+    Task successfully added
+  </div>
+    
+    <div class="card">
+        <div class="card-body">
+                <form [formGroup]="taskForm" (ngSubmit)="addTask()">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Add a Task</mat-label>
+                        <input matInput placeholder="Shopping" formControlName="task" required>
+                        <mat-error *ngIf="newTask.invalid">{{getErrorMessage()}}</mat-error>
+                      </mat-form-field>
+                    <button mat-raised-button color="primary" [disabled]="!taskForm.valid">Add task</button>
+                </form>
+              
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,26 @@
+<app-navigation></app-navigation>
+
+<div class="div-container">
+
+    <div class="search-bar">
+        <mat-form-field class="example-form-field">
+            <mat-label>Search for tasks</mat-label>
+            <input matInput type="text" [(ngModel)]="value">
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+    </div>
+    
+    <div class="no-tasks" *ngIf="allTasks.length == 0">
+        <h3>No tasks to show, add a new task in the add task page!</h3>
+    </div>
+    
+    <div class="card" *ngIf="allTasks.length != 0">
+        <div class="card-body" *ngFor="let task of (allTasks | sortTask | filter:value)">
+            <h3 class="task">{{task}}</h3>
+            <hr>
+        </div>
+    </div>
+</div>
+
