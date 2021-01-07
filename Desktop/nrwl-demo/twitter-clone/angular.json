@@ -1,0 +1,185 @@
+{
+  "version": 1,
+  "projects": {
+    "twitter": {
+      "projectType": "application",
+      "root": "apps/twitter",
+      "sourceRoot": "apps/twitter/src",
+      "prefix": "twitter-clone",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/twitter",
+            "index": "apps/twitter/src/index.html",
+            "main": "apps/twitter/src/main.ts",
+            "polyfills": "apps/twitter/src/polyfills.ts",
+            "tsConfig": "apps/twitter/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/twitter/src/favicon.ico",
+              "apps/twitter/src/assets"
+            ],
+            "styles": [
+              "apps/twitter/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/twitter/src/environments/environment.ts",
+                  "with": "apps/twitter/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "twitter:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "twitter:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "twitter:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/twitter/tsconfig.app.json",
+              "apps/twitter/tsconfig.spec.json",
+              "apps/twitter/tsconfig.editor.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/twitter/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/twitter"
+          ],
+          "options": {
+            "jestConfig": "apps/twitter/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "twitter-e2e": {
+      "root": "apps/twitter-e2e",
+      "sourceRoot": "apps/twitter-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/twitter-e2e/cypress.json",
+            "tsConfig": "apps/twitter-e2e/tsconfig.e2e.json",
+            "devServerTarget": "twitter:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "twitter:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/twitter-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/twitter-e2e/**/*"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "analytics": "a3111a5f-f032-4567-98d3-59a029df729a"
+  },
+  "schematics": {
+    "@nrwl/workspace": {
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/cypress": {
+      "cypress-project": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/node": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/nest": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/express": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "twitter"
+}

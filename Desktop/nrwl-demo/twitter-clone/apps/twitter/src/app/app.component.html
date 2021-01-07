@@ -1,0 +1,6 @@
+<p>{{(tweet$ | async).post}}</p>
+<p>{{(tweet$ | async).retweets}}</p>
+<input type="text" [(ngModel)]="tweetPost">
+<button (click)="post()">Post</button>
+<button (click)="like()">Like</button>
+<button (click)="dislike()">Dislike</button>
